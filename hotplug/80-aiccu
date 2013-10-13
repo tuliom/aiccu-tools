@@ -1,0 +1,15 @@
+#!/bin/sh
+# Copyright (C) 2013 Tulio Magno Quites Machado Filho <tuliom@quites.com.br>
+
+if [ "$INTERFACE" != "wan" ]; then
+	exit 0
+fi
+
+case "$ACTION" in
+	"ifup")
+		/etc/init.d/aiccu restart
+		;;
+	"ifdown")
+		/etc/init.d/aiccu stop
+		;;
+esac
