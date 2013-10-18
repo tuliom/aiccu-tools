@@ -1,15 +1,21 @@
 #!/bin/sh
 # Copyright (C) 2013 Tulio Magno Quites Machado Filho <tuliom@quites.com.br>
 
+bin="/etc/init.d/aiccu"
+log="logger -t hotplug -p"
+
 if [ "$INTERFACE" != "wan" ]; then
 	exit 0
 fi
 
-case "$ACTION" in
+case $ACTION in
 	"ifup")
-		/etc/init.d/aiccu restart
+		sleep 5
+		$log 6 "Restarting aiccu..."
+		$bin restart
 		;;
 	"ifdown")
-		/etc/init.d/aiccu stop
+		$log 6 "Stopping aiccu..."
+		$bin stop
 		;;
 esac
