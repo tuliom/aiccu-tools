@@ -53,6 +53,8 @@ start_instance() {
 stop_instance() {
 	local cfg="$1"
 	aiccu stop "/var/etc/aiccu-${cfg}.conf"
+	sleep 5
+	kill -9 $(pgrep aiccu)
 }
 
 restart_instance() {
